@@ -11,7 +11,7 @@ export class Startup {
   @Column()
   logo: string;
 
-  @Column()
+  @Column({ default: 'default cover url' })
   coverPhoto: string;
 
   //To be discussed : logo and cover photo will be url from S3-like type of solutions?

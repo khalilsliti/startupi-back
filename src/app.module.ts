@@ -13,7 +13,7 @@ import { StartupModule } from './startup/startup.module';
       port: parseInt(process.env.MYSQLDB_LOCAL_PORT),
       username: 'hana',
       password: 'hanahana',
-      database: process.env.MYSQL_DATABASE,
+      database: 'startupi_db',
       autoLoadEntities: true,
       synchronize: true,
       // username and password SHOULD to be fetched from .env

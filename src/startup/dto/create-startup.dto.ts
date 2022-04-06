@@ -12,6 +12,7 @@ export class CreateStartupDto {
 
   //To be discussed : logo and cover photo will be url from S3-like type of solutions?
 
+  @IsNotEmpty()
   moto: string;
 
   @IsNotEmpty()
