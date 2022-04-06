@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { CreateStartupDto } from './dto/create-startup.dto';
 import { UpdateStartupDto } from './dto/update-startup.dto';
 import { Startup } from './startup.entity';
@@ -37,7 +37,7 @@ export class StartupService {
     return null;
   }
 
-  remove(id: number) {
+  remove(id: number): Promise<DeleteResult> {
     return this.startupRepository.delete(id);
     //should delete all its following table cascade
   }
