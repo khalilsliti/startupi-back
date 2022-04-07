@@ -4,22 +4,24 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { StartupModule } from './startup/startup.module';
 import { MemberModule } from './member/member.module';
+import { ServiceModule } from './service/service.module';
 
 @Module({
   imports: [
-    StartupModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.HOST,
       port: parseInt(process.env.MYSQLDB_LOCAL_PORT),
-      username: 'hana',
-      password: 'hanahana',
+      username: 'root',
+      password: 'khalil',
       database: 'startupi_db',
       autoLoadEntities: true,
       synchronize: true,
       // username and password SHOULD to be fetched from .env
     }),
     MemberModule,
+    ServiceModule,
+    StartupModule,
   ],
   controllers: [AppController],
   providers: [AppService],
