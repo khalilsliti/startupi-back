@@ -8,8 +8,6 @@ import { ServiceModule } from './service/service.module';
 
 @Module({
   imports: [
-    ServiceModule,
-    StartupModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.HOST,
@@ -21,11 +19,9 @@ import { ServiceModule } from './service/service.module';
       synchronize: true,
       // username and password SHOULD to be fetched from .env
     }),
-<<<<<<< HEAD
     MemberModule,
-=======
     ServiceModule,
->>>>>>> 6f5fc4f (added service entity CRUD working)
+    StartupModule,
   ],
   controllers: [AppController],
   providers: [AppService],
