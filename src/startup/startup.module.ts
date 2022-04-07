@@ -6,7 +6,6 @@ import { Startup } from './startup.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Startup])],
-
   controllers: [StartupController],
   providers: [StartupService],
 })

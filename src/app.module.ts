@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { StartupModule } from './startup/startup.module';
+import { MemberModule } from './member/member.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { StartupModule } from './startup/startup.module';
       synchronize: true,
       // username and password SHOULD to be fetched from .env
     }),
+    MemberModule,
   ],
   controllers: [AppController],
   providers: [AppService],

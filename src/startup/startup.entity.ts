@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Member } from './../member/member.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Startup {
@@ -29,4 +30,6 @@ export class Startup {
   email: string;
 
   // has oneToMany services, testimonalias, members, messages
+  @OneToMany(() => Member, (member) => member.startup)
+  member: Member[];
 }
