@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { StartupModule } from './startup/startup.module';
 import { MemberModule } from './member/member.module';
 import { ServiceModule } from './service/service.module';
+import { TestimonialModule } from './testimonial/testimonial.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ServiceModule } from './service/service.module';
     MemberModule,
     ServiceModule,
     StartupModule,
+    TestimonialModule,
   ],
   controllers: [AppController],
   providers: [AppService],
