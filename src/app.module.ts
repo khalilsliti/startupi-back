@@ -7,6 +7,7 @@ import { MemberModule } from './member/member.module';
 import { ServiceModule } from './service/service.module';
 import { TestimonialModule } from './testimonial/testimonial.module';
 import { MessageModule } from './message/message.module';
+import 'dotenv/config'
 
 @Module({
   imports: [
@@ -14,8 +15,8 @@ import { MessageModule } from './message/message.module';
       type: 'mysql',
       host: process.env.HOST,
       port: parseInt(process.env.MYSQLDB_LOCAL_PORT),
-      username: 'root',
-      password: 'khalil',
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
       database: 'startupi_db',
       autoLoadEntities: true,
       synchronize: true,
