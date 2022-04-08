@@ -1,6 +1,7 @@
 import { Member } from './../member/member.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Testimonial } from 'src/testimonial/testimonial.entity';
+import { Service } from 'src/service/service.entity';
 
 @Entity()
 export class Startup {
@@ -36,4 +37,7 @@ export class Startup {
 
   @OneToMany(() => Testimonial, (testimonial) => testimonial.startup)
   testimonial: Testimonial[];
+
+  @OneToMany(() => Service, (service) => service.startup)
+  service: Service[];
 }

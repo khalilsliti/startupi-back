@@ -6,6 +6,7 @@ import { StartupModule } from './startup/startup.module';
 import { MemberModule } from './member/member.module';
 import { ServiceModule } from './service/service.module';
 import { TestimonialModule } from './testimonial/testimonial.module';
+import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
@@ -13,8 +14,8 @@ import { TestimonialModule } from './testimonial/testimonial.module';
       type: 'mysql',
       host: process.env.HOST,
       port: parseInt(process.env.MYSQLDB_LOCAL_PORT),
-      username: 'hana',
-      password: 'hanahana',
+      username: 'root',
+      password: 'khalil',
       database: 'startupi_db',
       autoLoadEntities: true,
       synchronize: true,
@@ -24,6 +25,7 @@ import { TestimonialModule } from './testimonial/testimonial.module';
     ServiceModule,
     StartupModule,
     TestimonialModule,
+    MessageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
