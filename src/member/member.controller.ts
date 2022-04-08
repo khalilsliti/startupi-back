@@ -15,9 +15,9 @@ import { UpdateMemberDto } from './dto/update-member.dto';
 export class MemberController {
   constructor(private readonly memberService: MemberService) {}
 
-  @Post()
-  create(@Body() createMemberDto: CreateMemberDto) {
-    return this.memberService.create(createMemberDto);
+  @Post(':id')
+  create(@Body() createMemberDto: CreateMemberDto, @Param('id') id) {
+    return this.memberService.create(createMemberDto,id);
   }
 
   @Get()
