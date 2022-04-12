@@ -9,7 +9,8 @@ import { TestimonialModule } from './testimonial/testimonial.module';
 import { MessageModule } from './message/message.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-import 'dotenv/config'
+import { TemplateModule } from './template/template.module';
+import 'dotenv/config';
 
 @Module({
   imports: [
@@ -22,7 +23,6 @@ import 'dotenv/config'
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       synchronize: true,
-      // username and password SHOULD to be fetched from .env
     }),
     MemberModule,
     ServiceModule,
@@ -31,6 +31,7 @@ import 'dotenv/config'
     MessageModule,
     AuthModule,
     UserModule,
+    TemplateModule,
   ],
   controllers: [AppController],
   providers: [AppService],
