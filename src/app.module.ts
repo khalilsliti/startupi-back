@@ -7,6 +7,8 @@ import { MemberModule } from './member/member.module';
 import { ServiceModule } from './service/service.module';
 import { TestimonialModule } from './testimonial/testimonial.module';
 import { MessageModule } from './message/message.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 import 'dotenv/config'
 
 @Module({
@@ -17,7 +19,7 @@ import 'dotenv/config'
       port: parseInt(process.env.MYSQLDB_LOCAL_PORT),
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
-      database: 'startupi_db',
+      database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       synchronize: true,
       // username and password SHOULD to be fetched from .env
@@ -27,6 +29,8 @@ import 'dotenv/config'
     StartupModule,
     TestimonialModule,
     MessageModule,
+    AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
