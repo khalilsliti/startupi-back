@@ -10,37 +10,33 @@ import { RegisterResponse } from 'src/user/viewModels/register.response';
 
 @Injectable()
 export class AuthService {
+  constructor(
+    private userService: UserService,
+    private jwtService: JwtService,
+  ) {}
 
-
-    constructor(private userService: UserService, 
-        private jwtService: JwtService,
-        ){}
-
-
-    async register(payload : RegisterDto): Promise<RegisterResponse>{
-
-        const user: User = await this.userService.createUser(payload);
-        return this.sign(user);
-    }
-
-    async login(payload : LoginDto): Promise<LoginResponse>{
-
-      const user: User = await this.userService.loginUser(payload);
-      return this.sign(user);
+  async register(payload: RegisterDto): Promise<RegisterResponse> {
+    const user: User = await this.userService.createUser(payload);
+    return this.sign(user);
   }
 
-    sign(user: User): RegisterResponse {
-        const today = new Date();
-        const exp = new Date(today);
-        exp.setDate(today.getDate() + 7);
-        const infoToSign: CurrentUserPayload = {
-          email: user.email,
-          id: user.id,
-          role: user.role,
-          exp: exp.getTime() / 1000,
-        };
-        return {
-          token: this.jwtService.sign(infoToSign),
-        };
-      }
+  async login(payload: LoginDto): Promise<LoginResponse> {
+    const user: User = await this.userService.loginUser(payload);
+    return this.sign(user);
+  }
+
+  sign(user: User): RegisterResponse {
+    const today = new Date();
+    const exp = new Date(today);
+    exp.setDate(today.getDate() + 7);
+    const infoToSign: CurrentUserPayload = {
+      email: user.email,
+      id: user.id,
+      role: user.role,
+      exp: exp.getTime() / 1000,
+    };
+    return {
+      token: this.jwtService.sign(infoToSign),
+    };
+  }
 }

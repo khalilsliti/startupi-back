@@ -13,7 +13,8 @@ import { JwtStrategy } from './jwt.strategy';
       secret: jwtConstants.secret,
     }),
   ],
-  providers: [ JwtStrategy, AuthService],
-  exports: [ JwtModule],  controllers: [AuthController],
+  providers: [JwtStrategy, AuthService],
+  exports: [JwtModule],
+  controllers: [AuthController],
 })
 export class AuthModule {}

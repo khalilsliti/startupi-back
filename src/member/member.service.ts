@@ -10,9 +10,11 @@ export class MemberService {
   constructor(
     @InjectRepository(Member) private memberRepository: Repository<Member>,
   ) {}
-  create(createMemberDto: CreateMemberDto,id): Promise<Member> {
-    const newMember = this.memberRepository.create({...createMemberDto,
-      startup:id});
+  create(createMemberDto: CreateMemberDto, id): Promise<Member> {
+    const newMember = this.memberRepository.create({
+      ...createMemberDto,
+      startup: id,
+    });
 
     return this.memberRepository.save(newMember);
   }

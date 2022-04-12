@@ -42,6 +42,6 @@ export class Startup {
   @OneToMany(() => Service, (service) => service.startup)
   service: Service[];
 
-  @OneToMany(()=>Message,(message)=>message.startup)
-  message:Message[]
+  @OneToMany(() => Message, (message) => message.startup)
+  message: Message[];
 }
