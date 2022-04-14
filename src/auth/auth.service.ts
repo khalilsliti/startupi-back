@@ -26,14 +26,11 @@ export class AuthService {
   }
 
   sign(user: User): RegisterResponse {
-    const today = new Date();
-    const exp = new Date(today);
-    exp.setDate(today.getDate() + 7);
+
     const infoToSign: CurrentUserPayload = {
       email: user.email,
       id: user.id,
       role: user.role,
-      exp: exp.getTime() / 1000,
     };
     return {
       token: this.jwtService.sign(infoToSign),

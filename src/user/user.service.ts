@@ -35,6 +35,7 @@ export class UserService {
         phone: payload.phone,
         email: payload.email,
         password: passwordCrypt,
+        role: payload?.role
       });
 
       return await this.userRepository.save(newUser);
