@@ -1,4 +1,4 @@
 export const jwtConstants = {
-  secret: 'process.env.SECRET',
+  secret: 'sofiene123',
   // This secret must be protected in a production case
 };
