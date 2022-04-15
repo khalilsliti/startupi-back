@@ -15,7 +15,7 @@ export class Testimonial {
   @Column({ nullable: false })
   startupId: number;
 
-  @ManyToOne(() => Startup, (startup) => startup.member, {
+  @ManyToOne(() => Startup, (startup) => startup.members, {
     onDelete: 'CASCADE',
   })
   startup: Startup;

@@ -18,6 +18,8 @@ export class CreateStartupDto {
 
   @IsNotEmpty()
   moto: string;
+  @IsNotEmpty()
+  aboutUs: string
 
   @IsNotEmpty()
   address: string;

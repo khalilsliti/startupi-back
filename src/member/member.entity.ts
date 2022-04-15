@@ -14,6 +14,6 @@ export class Member {
   saying: string;
   @Column({ nullable: true })
   linkedinUrl: string;
-  @ManyToOne(() => Startup, (startup) => startup.member, { nullable:false})
+  @ManyToOne(() => Startup, (startup) => startup.members, { nullable:false})
   startup: Startup;
 }

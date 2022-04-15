@@ -12,6 +12,6 @@ export class Service {
   @Column()
   description: string;
 
-  @ManyToOne(() => Startup, (startup) => startup.service)
+  @ManyToOne(() => Startup, (startup) => startup.services)
   startup: Startup;
 }

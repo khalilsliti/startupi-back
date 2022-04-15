@@ -13,8 +13,8 @@ export class StartupService {
 
   create(createStartupDto: CreateStartupDto): Promise<Startup> {
     const newStartup = this.startupRepository.create(createStartupDto);
-    newStartup.member = createStartupDto.members;
-    newStartup.service = createStartupDto.services;
+    newStartup.members = createStartupDto.members;
+    newStartup.services = createStartupDto.services;
     return this.startupRepository.save(newStartup);
   }
 
