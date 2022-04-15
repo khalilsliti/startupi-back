@@ -12,8 +12,6 @@ export class Service {
   @Column()
   description: string;
 
-  @ManyToOne(()=>Startup ,(startup)=>startup.service, {
-    onDelete: 'CASCADE',
-  })
-  startup:Startup
+  @ManyToOne(() => Startup, (startup) => startup.service)
+  startup: Startup;
 }

@@ -4,8 +4,11 @@ import { StartupService } from './startup.service';
 import { StartupController } from './startup.controller';
 import { Startup } from './startup.entity';
 
+
 @Module({
-  imports: [TypeOrmModule.forFeature([Startup])],
+  imports: [
+    TypeOrmModule.forFeature([Startup])
+  ],
   controllers: [StartupController],
   providers: [StartupService],
 })
