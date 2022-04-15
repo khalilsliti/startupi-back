@@ -1,4 +1,8 @@
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { CreateMemberDto } from 'src/member/dto/create-member.dto';
+import { Member } from 'src/member/member.entity';
+import { CreateServiceDto } from 'src/service/dto/create-service.dto';
+import { Service } from 'src/service/service.entity';
 
 export class CreateStartupDto {
   @IsString()
@@ -20,6 +24,9 @@ export class CreateStartupDto {
 
   @IsNotEmpty()
   phone: string;
+
+  members:Array<Member>
+  services:Array<Service>
 
   @IsEmail()
   email: string;

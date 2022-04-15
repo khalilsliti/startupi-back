@@ -1,5 +1,5 @@
 import { Member } from './../member/member.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinTable } from 'typeorm';
 import { Testimonial } from 'src/testimonial/testimonial.entity';
 import { Service } from 'src/service/service.entity';
 import { Message } from 'src/message/message.entity';
@@ -33,13 +33,17 @@ export class Startup {
   email: string;
 
   // has oneToMany services, testimonalias, members, messages
-  @OneToMany(() => Member, (member) => member.startup)
+  @OneToMany(() => Member, (member) => member.startup,{
+    cascade:true,
+  })
   member: Member[];
 
   @OneToMany(() => Testimonial, (testimonial) => testimonial.startup)
   testimonial: Testimonial[];
 
-  @OneToMany(() => Service, (service) => service.startup)
+  @OneToMany(() => Service, (service) => service.startup,{
+    cascade:true,
+  })
   service: Service[];
 
   @OneToMany(() => Message, (message) => message.startup)
