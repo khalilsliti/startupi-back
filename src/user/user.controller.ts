@@ -10,17 +10,14 @@ import { CurrentUserPayload } from './viewModels/currentUser.payload';
 
 @Controller('user')
 export class UserController {
+  constructor(private userService: UserService) {}
 
-    constructor(private userService: UserService) {}
-
-
-    @UseGuards(JwtAuthGuard)
-    @Roles(RoleEnum.ADMIN)
-    @UseGuards(RolesGuard)
-    @Get('info')
-    async getUserInfo(@GetUser() user: CurrentUserPayload, @Req() req: Request) {
-      const { id } = user;
-      return await this.userService.getUserInfo(id);
-    }
+  @UseGuards(JwtAuthGuard)
+  @Roles(RoleEnum.ADMIN)
+  @UseGuards(RolesGuard)
+  @Get('info')
+  async getUserInfo(@GetUser() user: CurrentUserPayload, @Req() req: Request) {
+    const { id } = user;
+    return await this.userService.getUserInfo(id);
+  }
 }
-
