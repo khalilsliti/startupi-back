@@ -6,7 +6,7 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
-  app.enableCors()
+  app.enableCors();
   if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
   }

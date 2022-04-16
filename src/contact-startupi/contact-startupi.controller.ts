@@ -1,4 +1,5 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Public } from 'src/shared/guards/public.guard';
 import { ContactStartupiService } from './contact-startupi.service';
 import { CreateContactStartupiDto } from './dto/create-contact-startupi.dto';
 
@@ -8,6 +9,7 @@ export class ContactStartupiController {
     private readonly contactStartupiService: ContactStartupiService,
   ) {}
 
+  @Public()
   @Post()
   create(@Body() createContactStartupiDto: CreateContactStartupiDto) {
     return this.contactStartupiService.create(createContactStartupiDto);
