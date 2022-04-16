@@ -31,12 +31,14 @@ export class Startup {
 
   @Column()
   email: string;
+  @Column()
+  aboutUs: string;
 
   // has oneToMany services, testimonalias, members, messages
   @OneToMany(() => Member, (member) => member.startup,{
     cascade:true,
   })
-  member: Member[];
+  members: Member[];
 
   @OneToMany(() => Testimonial, (testimonial) => testimonial.startup)
   testimonial: Testimonial[];
@@ -44,7 +46,7 @@ export class Startup {
   @OneToMany(() => Service, (service) => service.startup,{
     cascade:true,
   })
-  service: Service[];
+  services: Service[];
 
   @OneToMany(() => Message, (message) => message.startup)
   message: Message[];
