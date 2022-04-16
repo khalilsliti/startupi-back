@@ -3,16 +3,13 @@ import { IsNotEmpty, IsString } from 'class-validator';
 import { CreateMessageDto } from './create-message.dto';
 
 export class UpdateMessageDto extends PartialType(CreateMessageDto) {
-    
-    firstName?:String;
-   
-    lastName?:String;
-    
-    email?:String;
+  firstName?: string;
 
-    phone?:String;
-    
-    content?:String
+  lastName?: string;
 
+  email?: string;
 
+  phone?: string;
+
+  content?: string;
 }

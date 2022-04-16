@@ -30,12 +30,12 @@ export class UserService {
       const passwordCrypt = await bcrypt.hash(password, 12);
 
       const newUser = await this.userRepository.create({
-        firstName : payload.firstName,
+        firstName: payload.firstName,
         lastName: payload.lastName,
         phone: payload.phone,
         email: payload.email,
         password: passwordCrypt,
-        role: payload?.role
+        role: payload?.role,
       });
 
       return await this.userRepository.save(newUser);

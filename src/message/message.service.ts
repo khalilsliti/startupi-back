@@ -10,17 +10,19 @@ export class MessageService {
   constructor(
     @InjectRepository(Message) private messageRepository: Repository<Message>,
   ) {}
-  create(createMessageDto: CreateMessageDto , id): Promise<Message> {
-    const newMessage= this.messageRepository.create({...createMessageDto,
-      startup: id});
-    return this.messageRepository.save(newMessage) ;
+  create(createMessageDto: CreateMessageDto, id): Promise<Message> {
+    const newMessage = this.messageRepository.create({
+      ...createMessageDto,
+      startup: id,
+    });
+    return this.messageRepository.save(newMessage);
   }
 
-  findAll():Promise<Message[]> {
+  findAll(): Promise<Message[]> {
     return this.messageRepository.find();
   }
-  
+
   findOne(id: number): Promise<Message> {
     return this.messageRepository.findOne(id);
-  } 
+  }
 }
