@@ -15,6 +15,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { ContactStartupiModule } from './contact-startupi/contact-startupi.module';
 import { MailModule } from './mail/mail.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -27,6 +28,9 @@ import { MailModule } from './mail/mail.module';
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       synchronize: true,
+    }),
+    MulterModule.register({
+      dest: '/src/files',
     }),
     MemberModule,
     ServiceModule,

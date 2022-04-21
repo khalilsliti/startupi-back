@@ -6,12 +6,15 @@ import {
   Patch,
   Param,
   Delete,
+  UseInterceptors,
+  UploadedFiles,
 } from '@nestjs/common';
 import { DeleteResult } from 'typeorm';
 import { StartupService } from './startup.service';
 import { CreateStartupDto } from './dto/create-startup.dto';
 import { UpdateStartupDto } from './dto/update-startup.dto';
 import { Startup } from './startup.entity';
+import { AnyFilesInterceptor } from '@nestjs/platform-express/multer';
 
 @Controller('startup')
 export class StartupController {
@@ -43,5 +46,20 @@ export class StartupController {
   @Delete(':id')
   remove(@Param('id') id: string): Promise<DeleteResult> {
     return this.startupService.remove(+id);
+  }
+
+  @Post('upload')
+  @UseInterceptors(AnyFilesInterceptor())
+  uploadFile(@UploadedFiles() files: Array<Express.Multer.File>) {
+    console.log(files)
+    // const response = [];
+    // files.forEach(file => {
+    //   const fileReponse = {
+    //     originalname: file.originalname,
+    //     filename: file.filename,
+    //   };
+    //   response.push(fileReponse);
+    // });
+    // return response;
   }
 }
