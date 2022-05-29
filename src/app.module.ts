@@ -16,7 +16,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { ContactStartupiModule } from './contact-startupi/contact-startupi.module';
 import { MailModule } from './mail/mail.module';
 import { MulterModule } from '@nestjs/platform-express';
-import { UploadFileService } from './shared/upload-file/upload-file.service';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -43,6 +43,7 @@ import { UploadFileService } from './shared/upload-file/upload-file.service';
     TemplateModule,
     ContactStartupiModule,
     MailModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [
@@ -51,7 +52,6 @@ import { UploadFileService } from './shared/upload-file/upload-file.service';
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
     },
-    UploadFileService,
   ],
 })
 export class AppModule {}

@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { StartupService } from './startup.service';
 import { StartupController } from './startup.controller';
 import { Startup } from './startup.entity';
-import { UploadFileService } from 'src/shared/upload-file/upload-file.service';
+
 
 
 @Module({
@@ -11,6 +11,6 @@ import { UploadFileService } from 'src/shared/upload-file/upload-file.service';
     TypeOrmModule.forFeature([Startup])
   ],
   controllers: [StartupController],
-  providers: [StartupService,UploadFileService],
+  providers: [StartupService],
 })
 export class StartupModule {}
