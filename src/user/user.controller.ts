@@ -17,6 +17,7 @@ export class UserController {
   @UseGuards(RolesGuard)
   @Get('info')
   async getUserInfo(@GetUser() user: CurrentUserPayload, @Req() req: Request) {
+   
     const { id } = user;
     return await this.userService.getUserInfo(id);
   }

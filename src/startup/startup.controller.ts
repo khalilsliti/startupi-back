@@ -15,10 +15,12 @@ import { CreateStartupDto } from './dto/create-startup.dto';
 import { UpdateStartupDto } from './dto/update-startup.dto';
 import { Startup } from './startup.entity';
 import { AnyFilesInterceptor } from '@nestjs/platform-express/multer';
+import { UploadFileService } from 'src/shared/upload-file/upload-file.service';
 
 @Controller('startup')
 export class StartupController {
-  constructor(private readonly startupService: StartupService) {}
+  constructor(private readonly startupService: StartupService,
+    private uploadFileService:UploadFileService) {}
 
   @Post()
   create(@Body() createStartupDto: CreateStartupDto): Promise<Startup> {
@@ -49,17 +51,9 @@ export class StartupController {
   }
 
   @Post('upload')
-  @UseInterceptors(AnyFilesInterceptor())
+  @UseInterceptors(AnyFilesInterceptor({dest:'./src/files'}))
   uploadFile(@UploadedFiles() files: Array<Express.Multer.File>) {
-    console.log(files)
-    // const response = [];
-    // files.forEach(file => {
-    //   const fileReponse = {
-    //     originalname: file.originalname,
-    //     filename: file.filename,
-    //   };
-    //   response.push(fileReponse);
-    // });
-    // return response;
+    // saving files in files folder
+    this.uploadFileService.uploadFile(files)
   }
 }

@@ -16,6 +16,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { ContactStartupiModule } from './contact-startupi/contact-startupi.module';
 import { MailModule } from './mail/mail.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { UploadFileService } from './shared/upload-file/upload-file.service';
 
 @Module({
   imports: [
@@ -30,7 +31,7 @@ import { MulterModule } from '@nestjs/platform-express';
       synchronize: true,
     }),
     MulterModule.register({
-      dest: '/src/files',
+      dest: './src/files',
     }),
     MemberModule,
     ServiceModule,
@@ -50,6 +51,7 @@ import { MulterModule } from '@nestjs/platform-express';
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
     },
+    UploadFileService,
   ],
 })
 export class AppModule {}
