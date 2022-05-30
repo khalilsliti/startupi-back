@@ -1,28 +1,23 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ContactStartupi } from './contact-startupi.entity';
 import { CreateContactStartupiDto } from './dto/create-contact-startupi.dto';
 import { MailService } from './../mail/mail.service';
+import { ClientKafka } from '@nestjs/microservices';
 
 @Injectable()
 export class ContactStartupiService {
   constructor(
     @InjectRepository(ContactStartupi)
-    private contactRepository: Repository<ContactStartupi>,
     private mailService: MailService,
+    @Inject('NOTIF_SERVICE') private readonly contactClient: ClientKafka,
   ) {}
 
   async create(createContactStartupiDto: CreateContactStartupiDto) {
     try {
-      const newContact = this.contactRepository.create(
-        createContactStartupiDto,
-      );
+      return await this.contactClient.send('create_contact',createContactStartupiDto)
 
-      const savedMessage = this.contactRepository.save(newContact);
-      await this.mailService.sendContactEntityMail(createContactStartupiDto);
-
-      return savedMessage;
     } catch (err) {
       throw new HttpException(
         {
@@ -33,11 +28,14 @@ export class ContactStartupiService {
     }
   }
 
-  findAll() {
-    return this.contactRepository.find();
+  async findAll() {
+    return await this.contactClient
+    .send('find_all_contact',{})
   }
 
-  findOne(id: number) {
-    return this.contactRepository.findOne(id);
+  async findOne(id:number) {
+    return await this.contactClient
+    .send('find_one_contact',{id:id})
   }
+
 }

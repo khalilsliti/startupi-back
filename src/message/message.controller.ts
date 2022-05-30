@@ -6,7 +6,7 @@ import { Message } from './message.entity';
 @Controller('message')
 export class MessageController {
   constructor(private readonly messageService: MessageService) {}
-
+  
   @Post(':id')
   create(
     @Body() createMessageDto: CreateMessageDto,
@@ -24,4 +24,5 @@ export class MessageController {
   findOne(@Param('id') id: string): Promise<Message> {
     return this.messageService.findOne(+id);
   }
+
 }
