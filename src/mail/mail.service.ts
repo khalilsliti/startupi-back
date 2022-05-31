@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
-import { CreateContactStartupiDto } from 'src/contact-startupi/dto/create-contact-startupi.dto';
+import { CreateContactDto } from 'src/contact/dto/create-contact.dto';
 
 @Injectable()
 export class MailService {
   constructor(private mailerService: MailerService) {}
 
-  async sendContactEntityMail(contactInfo: CreateContactStartupiDto) {
+  async sendContactEntityMail(contactInfo: CreateContactDto) {
     await this.mailerService.sendMail({
       to: process.env.founder_mail,
 

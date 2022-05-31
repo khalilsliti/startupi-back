@@ -13,7 +13,7 @@ import { TemplateModule } from './template/template.module';
 import 'dotenv/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
-import { ContactStartupiModule } from './contact-startupi/contact-startupi.module';
+import { ContactModule } from './contact/contact.module';
 import { MailModule } from './mail/mail.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { FilesModule } from './files/files.module';
@@ -41,7 +41,7 @@ import { FilesModule } from './files/files.module';
     AuthModule,
     UserModule,
     TemplateModule,
-    ContactStartupiModule,
+    ContactModule,
     MailModule,
     FilesModule,
   ],
