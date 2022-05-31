@@ -23,7 +23,7 @@ import { ClientKafka } from '@nestjs/microservices';
 @Controller('startup')
 export class StartupController implements OnModuleInit {
   constructor(private readonly startupService: StartupService,
-    @Inject('STARTUP_SERVICE') private readonly startupClient: ClientKafka,) {}
+    @Inject('STARTUP_SERVICE') private readonly startupClient: ClientKafka) {}
 
   @Post()
   async create(@Body() createStartupDto: CreateStartupDto) {
@@ -32,26 +32,26 @@ export class StartupController implements OnModuleInit {
   }
 
   @Get()
-  findAll() {
-    return this.startupService.findAll();
+  async findAll() {
+    return await this.startupService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.startupService.findOne(+id);
+   async findOne(@Param('id') id: string) {
+    return  await this.startupService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateStartupDto: UpdateStartupDto,
-  ) {
-    return this.startupService.update(+id, updateStartupDto);
-  }
+  // @Patch(':id')
+  // async update(
+  //   @Param('id') id: string,
+  //   @Body() updateStartupDto: UpdateStartupDto,
+  // ) {
+  //   return await this.startupService.update(+id, updateStartupDto);
+  // }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.startupService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.startupService.remove(+id);
   }
 
   onModuleInit() {
