@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ContactStartupi } from './contact-startupi.entity';
 import { CreateContactStartupiDto } from './dto/create-contact-startupi.dto';
 import { MailService } from './../mail/mail.service';
 import { ClientKafka } from '@nestjs/microservices';
@@ -9,7 +8,6 @@ import { ClientKafka } from '@nestjs/microservices';
 @Injectable()
 export class ContactStartupiService {
   constructor(
-    @InjectRepository(ContactStartupi)
     private mailService: MailService,
     @Inject('NOTIF_SERVICE') private readonly contactClient: ClientKafka,
   ) {}

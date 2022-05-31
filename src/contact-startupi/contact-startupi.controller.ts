@@ -24,7 +24,6 @@ export class ContactStartupiController implements OnModuleInit{
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    console.log("hello")
     return this.contactStartupiService.findOne(id);
   }
 

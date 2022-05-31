@@ -2,11 +2,10 @@ import { Module } from '@nestjs/common';
 import { MessageService } from './message.service';
 import { MessageController } from './message.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Message } from './message.entity';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Message]),
+  imports:[
   ClientsModule.register([
     {
       name:'NOTIF_SERVICE',

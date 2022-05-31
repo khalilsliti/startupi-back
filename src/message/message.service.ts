@@ -1,35 +1,35 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { CreateMessageDto } from './dto/create-message.dto';
-import { UpdateMessageDto } from './dto/update-message.dto';
-import { Message } from './message.entity';
 
 @Injectable()
 export class MessageService {
   constructor(
-    @InjectRepository(Message) private messageRepository: Repository<Message>,
     @Inject('NOTIF_SERVICE') private readonly messageClient: ClientKafka,
   ) {}
-  create(createMessageDto: CreateMessageDto, id): Promise<Message> {
-    const newMessage = this.messageRepository.create({
-      ...createMessageDto,
-      startup: id,
-    });
-    return this.messageRepository.save(newMessage);
+
+  async create(createMessageDto: CreateMessageDto, id) {
+    try {
+      return await this.messageClient.send('create_message', {
+        createMessageDto,
+        id,
+      });
+    } catch (error) {
+      console.log(error);
+      throw new HttpException(
+        {
+          message: 'MESSAGE_CREATION_ERROR',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
-  findAll(): Promise<Message[]> {
-    return this.messageRepository.find();
+  async findAll() {
+    return await this.messageClient.send('find_all_message', {});
   }
 
-  findOne(id: number): Promise<Message> {
-    return this.messageRepository.findOne(id);
-  }
-
-  testMessage(){
-    console.log("hey")
-    this.messageClient.emit('test_contact', {msg:"hello there"})
+  async findOne(id: number) {
+    return await this.messageClient.send('find_one_message', { id: id });
   }
 }
