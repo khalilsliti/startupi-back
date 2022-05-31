@@ -32,4 +32,7 @@ export class CreateStartupDto {
 
   @IsEmail()
   email: string;
+
+
+
 }

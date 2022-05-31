@@ -5,7 +5,9 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe( //register validation pipe as global pipe
+    { transform: true,   //enable auto type transform 
+      }));  // deleting unnecessary object properties from DTOs
   app.enableCors();
   if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();

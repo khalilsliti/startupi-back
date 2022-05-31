@@ -15,6 +15,8 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { ContactModule } from './contact/contact.module';
 import { MailModule } from './mail/mail.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -28,6 +30,9 @@ import { MailModule } from './mail/mail.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    MulterModule.register({
+      dest: './src/files',
+    }),
     MemberModule,
     ServiceModule,
     StartupModule,
@@ -38,6 +43,7 @@ import { MailModule } from './mail/mail.module';
     TemplateModule,
     ContactModule,
     MailModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [
