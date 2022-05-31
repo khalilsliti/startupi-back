@@ -1,14 +1,10 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { CreateContactDto } from './dto/create-contact.dto';
-import { MailService } from './../mail/mail.service';
 import { ClientKafka } from '@nestjs/microservices';
 
 @Injectable()
 export class ContactService {
   constructor(
-    private mailService: MailService,
     @Inject('NOTIF_SERVICE') private readonly contactClient: ClientKafka,
   ) {}
 
