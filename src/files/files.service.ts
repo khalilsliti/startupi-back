@@ -19,6 +19,7 @@ getBlobClient(imageName:string):BlockBlobClient{
 async upload(file:Express.Multer.File){
   const blobClient = this.getBlobClient(file.originalname);
   await blobClient.uploadData(file.buffer);
+ 
 }
 async uploadMany(files:Array<Express.Multer.File>)
 {
