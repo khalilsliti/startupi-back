@@ -13,7 +13,7 @@ import { TemplateModule } from './template/template.module';
 import 'dotenv/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
-import { ContactStartupiModule } from './contact-startupi/contact-startupi.module';
+import { ContactModule } from './contact/contact.module';
 import { MailModule } from './mail/mail.module';
 
 @Module({
@@ -36,7 +36,7 @@ import { MailModule } from './mail/mail.module';
     AuthModule,
     UserModule,
     TemplateModule,
-    ContactStartupiModule,
+    ContactModule,
     MailModule,
   ],
   controllers: [AppController],

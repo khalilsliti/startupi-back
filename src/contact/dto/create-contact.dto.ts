@@ -1,4 +1,4 @@
-export class CreateContactStartupiDto {
+export class CreateContactDto {
   name: string;
 
   object: string;
