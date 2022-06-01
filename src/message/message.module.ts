@@ -15,7 +15,7 @@ import { Message } from './message.entity';
       options: {
         client: {
           clientId: 'message',
-          brokers: ['localhost:9092'],
+          brokers: [`${process.env.KAFKA_HOST}:${process.env.KAFKA_PORT}`],
         },
         consumer:{
           groupId:'message-consumer'

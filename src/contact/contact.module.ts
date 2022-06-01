@@ -14,7 +14,7 @@ import { ContactService } from './contact.service';
         options: {
           client: {
             clientId: 'contact',
-            brokers: ['localhost:9092'],
+            brokers: [`${process.env.KAFKA_HOST}:${process.env.KAFKA_PORT}`],
           },
           consumer:{
             groupId:'contact-consumer'
