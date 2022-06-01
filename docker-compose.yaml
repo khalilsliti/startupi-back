@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  apigateway:
+    image: startupicontainerregistry.azurecr.io/apigateway:latest
+    restart: on-failure
+    ports:
+      - ${NEST_LOCAL_PORT}:${NEST_DOCKER_PORT}
