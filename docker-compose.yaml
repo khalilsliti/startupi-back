@@ -1,8 +1,26 @@
 version: "3"
 
 services:
-  apigateway:
+  mysql_db:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD}
+      - MYSQL_DATABASE=${DATABASE_NAME}
+    volumes:
+      - /var/lib/docker/volumes/startupi-db-volume/_data:/var/lib/mysql
+
+  nest:
     image: startupicontainerregistry.azurecr.io/apigateway:latest
     restart: on-failure
+    depends_on:
+      - mysql_db
+    environment:
+      - HOST=${HOST}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_USER=${DATABASE_USER}
+      - AZURE_STORAGE=${AZURE_STORAGE}
+      - MYSQLDB_LOCAL_PORT=${MYSQLDB_LOCAL_PORT}
     ports:
       - ${NEST_LOCAL_PORT}:${NEST_DOCKER_PORT}
